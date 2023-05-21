@@ -1,55 +1,26 @@
 {
-  "env": {
-    "browser": true,
-    "es2021": true
-  },
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-     "airbnb",
-    "eslint-config-airbnb",
-    "airbnb/hooks",
-    "airbnb-typescript",
-    "plugin:react/jsx-runtime"
-  ],
-  "parser": "@typescript-eslint/parser",
-//   "jsx-runtime": {
-//     "plugins": [
-//       "react"
-//     ]
-//   },
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+    "env": {
+        "browser": true,
+        "es2021": true
     },
-    "ecmaVersion": "latest",
-    "sourceType": "module",
-    "project": "./tsconfig.json"
-  },
-  "plugins": ["react", "react-hooks", "@typescript-eslint" ],
-  "rules": {
-    "no-restricted-exports": "off",
-    "import/prefer-default-export": "off",
-    "no-nested-ternary": "off",
-    "no-underscore-dangle": ["error", { "allow": ["_id"] }],
-    "react/jsx-props-no-spreading": "off",
-    "react/require-default-props": "off",
-    "react/react-in-jsx-scope": 0,
-    "react/jsx-uses-react":0
-  },
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".d.ts", ".ts", ".tsx"],
-        "moduleDirectory": [ "src", ".", "migrations"]
-      }
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/jsx-runtime",
+        "plugin:react-hooks/recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
     }
-  },
-  "ignorePatterns": ["*config.js"]
 }

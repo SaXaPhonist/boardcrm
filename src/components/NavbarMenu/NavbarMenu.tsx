@@ -10,18 +10,12 @@ import SettingIcon from "assets/images/settings.svg";
 import ProfileIcon from "assets/images/personal-settings.svg";
 import FinanceIcon from "assets/images/finance_calculator.svg";
 import ExitIcon from "assets/images/exit.svg";
-import { Link, matchPath, useLocation, useMatch } from "react-router-dom";
-
-interface IMenuTabs {
-  id: number;
-  title: string;
-  icon: string;
-  link?: string;
-}
+import { Link, useLocation } from "react-router-dom";
+import { IMenuTabs } from "lib/types";
 
 const MENU_TABS: IMenuTabs[] = [
-  { id: 1, title: "Главная", icon: HomeIcon, link: '/' },
-  { id: 2, title: "Поиск адресов", icon: AdressIcon, link: '/address' },
+  { id: 1, title: "Главная", icon: HomeIcon, link: "/" },
+  { id: 2, title: "Поиск адресов", icon: AdressIcon, link: "/address" },
   { id: 3, title: "Таблицы", icon: TableIcon },
   { id: 4, title: "Календарь", icon: CalendarIcon },
   { id: 5, title: "Карты", icon: MapIcon },
@@ -34,41 +28,66 @@ interface IProps {
   isMenuExpanded: boolean;
 }
 
-export const NavbarMenu = ({ isMenuExpanded}: IProps) => {
+export const NavbarMenu = ({ isMenuExpanded }: IProps) => {
   const [isSubSettings, toggleSettings] = useState(false);
-  const location = useLocation()
+  const location = useLocation();
 
   const openSubSettings = () => {
     toggleSettings((prev) => !prev);
   };
 
   return (
-    // <div className={styles['nav-container']}>
     <nav className={`${styles.navbar} ${isMenuExpanded && styles.expanded}`}>
       <ul>
         <li className={styles["title-menu"]}>
-            <span className={styles["nav-text"]}>Меню</span>
+          <span className={styles["nav-text"]}>Меню</span>
         </li>
         {MENU_TABS.map(({ id, title, icon, link }) => {
           if (title === "Настройки") {
             return (
               <li key={id} className={styles["nav-tab"]}>
                 <div onClick={openSubSettings}>
-                  <div className={`${styles["tab-content"]} ${isSubSettings ? styles['arrow-up']:styles['arrow-down']}`}>
+                  <div
+                    className={`${styles["tab-content"]} ${
+                      isSubSettings ? styles["arrow-up"] : styles["arrow-down"]
+                    }`}
+                  >
                     <img width={32} height={32} src={icon} />
                     <span className={styles["nav-text"]}>{title}</span>
                   </div>
-                  <ul className={`${styles["sub-tabs"]} ${isSubSettings && styles['sub-open']}`}>
+                  <ul
+                    className={`${styles["sub-tabs"]} ${
+                      isSubSettings && styles["sub-open"]
+                    }`}
+                  >
                     <li>
-                      <a href="#" onClick={() => false} className={`${styles['tab-content']}`}>
-                        <img src={ProfileIcon} alt={title} width={32} height={32} />
-                        <span className={styles["nav-text"]}>Настройки профиля</span>
+                      <a
+                        href="#"
+                        onClick={() => false}
+                        className={`${styles["tab-content"]}`}
+                      >
+                        <img
+                          src={ProfileIcon}
+                          alt={title}
+                          width={32}
+                          height={32}
+                        />
+                        <span className={styles["nav-text"]}>
+                          Настройки профиля
+                        </span>
                       </a>
                     </li>
                     <li>
-                      <a href="#" className={`${styles['tab-content']} sub`}>
-                        <img src={FinanceIcon} alt={title}  width={32} height={32}/>
-                        <span className={styles["nav-text"]}>Управление финансами</span>
+                      <a href="#" className={`${styles["tab-content"]} sub`}>
+                        <img
+                          src={FinanceIcon}
+                          alt={title}
+                          width={32}
+                          height={32}
+                        />
+                        <span className={styles["nav-text"]}>
+                          Управление финансами
+                        </span>
                       </a>
                     </li>
                   </ul>
@@ -78,8 +97,16 @@ export const NavbarMenu = ({ isMenuExpanded}: IProps) => {
           }
 
           return (
-            <li key={id} className={`${styles["nav-tab"]} ${location.pathname === link && styles['active-tab']}`}>
-              <Link to={link ?? "#"} className={`${styles['tab-content']} ${styles.nonsub}`}>
+            <li
+              key={id}
+              className={`${styles["nav-tab"]} ${
+                location.pathname === link && styles["active-tab"]
+              }`}
+            >
+              <Link
+                to={link ?? "#"}
+                className={`${styles["tab-content"]} ${styles.nonsub}`}
+              >
                 <img width={32} height={32} src={icon} alt={title} />
                 <span className={styles["nav-text"]}>{title}</span>
               </Link>
@@ -88,6 +115,5 @@ export const NavbarMenu = ({ isMenuExpanded}: IProps) => {
         })}
       </ul>
     </nav>
-    // </div>
   );
 };

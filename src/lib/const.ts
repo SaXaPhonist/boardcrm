@@ -1,0 +1,2 @@
+export const ADDRESS_VALIDATION_LENGTH = 3
+export const COUNT_OF_ADDRESS_QUERY = 20

@@ -1,0 +1,37 @@
+
+.results-box {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding: 1.5em;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px rgba(2, 0, 97, 0.25);
+
+    .search-title {
+        font-size: 1.625rem;
+        font-weight: 700;
+        margin-bottom: 1em;
+    }
+
+    .result-item {
+        color: #000000;
+        padding: 1em 0;
+        border-top: 1px solid #d7d7d7;
+        font-size: 1.25rem;
+        font-weight: 500;
+
+        &:hover{
+            background-color: #e5e5e5;
+        }
+
+        & a {
+            cursor: pointer;
+            color: #000000;
+            text-decoration: none;
+            &:hover{
+                color: #e2c740;
+            }
+        }
+    }
+}

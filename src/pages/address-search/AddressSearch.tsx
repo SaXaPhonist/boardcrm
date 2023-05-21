@@ -1,14 +1,11 @@
-import { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
-import styles from "./Search.module.scss";
+import { ChangeEvent, useEffect, useState } from "react";
+import styles from "./AddressSearch.module.scss";
 import { useDebounce } from "use-debounce";
-
-interface IResposeSuggestions {
-  value: string;
-  unrestricted_value: string;
-  data: Record<string, string>;
-}
-
-interface IAdress extends Omit<IResposeSuggestions, "data"> {}
+import { COUNT_OF_ADDRESS_QUERY } from "../../lib/const";
+import { IAdress, IResposeData} from "lib/types";
+import { ResultList } from "components/ResulstList/ResultsList";
+import { lengthValidation } from "utils/validation";
+import { serializeAddressData } from "utils/serialization";
 
 const url =
   "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
@@ -20,31 +17,25 @@ const getOptions = (query: string) => ({
     Accept: "application/json",
     Authorization: "Token " + process.env.API_KEY,
   },
-  body: JSON.stringify({ query: query, count: 20 }),
+  body: JSON.stringify({ query: query, count: COUNT_OF_ADDRESS_QUERY }),
 });
 
-const serializeAddressData = (array: IResposeSuggestions[]) =>
-  array.map(({ value, unrestricted_value }) => ({ value, unrestricted_value }));
-
-export const SearchSection = () => {
+export const AddressSearch = () => {
   const [searchValue, setSearchValue] = useState("");
-  const [adressData, setAdressData] = useState<IAdress[] | null>(null);
+  const [addressData, setAdressData] = useState<IAdress[] | null>(null);
   const [isValidationError, setValidationError] = useState(false);
 
   const [debouncedValue] = useDebounce(searchValue, 400);
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log("handler", e.target.value);
     const value = e.target.value;
-
     setSearchValue(value);
   };
 
   const getAddress = async (value: string) => {
     try {
       const res = await fetch(url, getOptions(value));
-      const data = await res.json();
-      console.log("res", data.suggestions);
+      const data: IResposeData = await res.json();
       const address = serializeAddressData(data.suggestions);
       setAdressData(address);
     } catch (error) {
@@ -54,25 +45,15 @@ export const SearchSection = () => {
     }
   };
 
-
-  const validation = (value: string) => 
-      value.length > 3
-  
-  
-
   useEffect(() => {
-    console.log('deb val', debouncedValue)
-    if (
-      debouncedValue &&
-      validation(debouncedValue)
-    ) {
+    if (debouncedValue && lengthValidation(debouncedValue)) {
       setValidationError(false);
       getAddress(debouncedValue);
-      return
-    }else if (debouncedValue.length > 0){
+      return;
+    } else if (debouncedValue.length > 0) {
       setValidationError(true);
     }
-    getAddress('')
+    getAddress("");
   }, [debouncedValue]);
 
   return (
@@ -110,20 +91,7 @@ export const SearchSection = () => {
         <p className={styles["error-box"]}>
           {isValidationError && "Минимальная длина поиска 3 символа"}
         </p>
-        <div className={styles["results-box"]}>
-          <h3 className={styles["search-title"]}>Адреса</h3>
-          <ul>
-            {adressData && adressData.length
-              ? adressData.map(({value, unrestricted_value}) => (
-                  <li className={styles["result-item"]}>
-                    <a href={`mailto:${unrestricted_value}`} >
-                      {value}
-                    </a>
-                    </li>
-                ))
-              : <p>Пока пусто</p>}
-          </ul>
-        </div>
+        <ResultList addressData={addressData} titleForSearch="Адреса" />
       </section>
     </>
   );

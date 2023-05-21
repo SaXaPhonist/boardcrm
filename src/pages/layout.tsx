@@ -1,7 +1,6 @@
 import { Header } from "components/Header/Header";
 import { NavbarMenu } from "components/NavbarMenu/NavbarMenu";
 import styles from "./layout.module.scss";
-import { SearchSection } from "components/SearchSection/SearchSection";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 

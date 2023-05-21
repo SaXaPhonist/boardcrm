@@ -1,10 +1,10 @@
-import { Layout } from "layout";
+import { Layout } from 'pages/layout'
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import '../global.scss'
-import { SearchSection } from "components/SearchSection/SearchSection";
-import { News } from "pages/News";
+import { AddressSearch } from "pages/address-search/AddressSearch";
+import { News } from "pages/news/News";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     },
       {
         path:'/address',
-        element: <SearchSection />
+        element: <AddressSearch />
       }
     ]
   },
