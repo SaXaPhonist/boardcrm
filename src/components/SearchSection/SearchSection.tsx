@@ -113,7 +113,7 @@ export const SearchSection = () => {
         <div className={styles["results-box"]}>
           <h3 className={styles["search-title"]}>Адреса</h3>
           <ul>
-            {adressData
+            {adressData && adressData.length
               ? adressData.map(({value, unrestricted_value}) => (
                   <li className={styles["result-item"]}>
                     <a href={`mailto:${unrestricted_value}`} >
@@ -121,7 +121,7 @@ export const SearchSection = () => {
                     </a>
                     </li>
                 ))
-              : <p>Здесь будут ваши адреса</p>}
+              : <p>Пока пусто</p>}
           </ul>
         </div>
       </section>

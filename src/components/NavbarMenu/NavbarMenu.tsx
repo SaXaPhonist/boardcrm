@@ -72,7 +72,7 @@ export const NavbarMenu = ({ isMenuExpanded}: IProps) => {
                       </a>
                     </li>
                   </ul>
-                </div>/
+                </div>
               </li>
             );
           }
