@@ -1,0 +1,104 @@
+.header {
+    position: sticky;
+    display: flex;
+    flex-direction: row;
+    top: 0;
+    height: var(--headerHeight);
+    display: flex;
+    align-items: center;
+    padding: 1em 2em;
+    background: #4f27bf;
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+
+    @media screen and (max-width: 768px) {
+        padding: 1em 0.5em;
+    }
+
+    .logo-section {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5em;
+
+        .hamburger-menu {
+            display: none;
+        }
+
+        @media (max-width: 450px) {
+            .logo {
+                display: none;
+            }
+
+            .hamburger-menu {
+                display: block;
+                .menu-btn {
+                    position: relative;
+                    width: 26px;
+                    height: 26px;
+                    cursor: pointer;
+                    z-index: 1;
+
+                    @mixin spanDefault {
+                        display: block;
+                        position: absolute;
+                        width: 100%;
+                        height: 2px;
+                        background-color: #ffffff;
+                        transition-duration: 0.25s;
+                    }
+
+                    span {
+                        z-index: 10;
+                        @include spanDefault();
+                        &::before {
+                            content: "";
+                            top: -8px;
+                            @include spanDefault();
+                        }
+                        &::after {
+                            content: "";
+                            top: 8px;
+                            @include spanDefault();
+                        }
+                    }
+                }
+
+                .open-burger {
+                    span {
+                        transform: rotate(45deg);
+
+                        &::before {
+                            top: 0;
+                            transform: rotate(0deg);
+                        }
+
+                        &::after {
+                            top: 0;
+                            transform: rotate(90deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .profile-section {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        margin-left: auto;
+        gap: 1em;
+
+        .fullname {
+            > :first-child {
+                margin-right: 0.5em;
+            }
+
+            @media screen and (max-width: 768px) {
+                display: none;
+            }
+        }
+    }
+}

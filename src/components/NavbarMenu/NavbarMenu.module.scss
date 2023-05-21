@@ -1,0 +1,186 @@
+@mixin arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid rgb(125, 126, 123);
+    cursor: pointer;
+}
+
+@mixin arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid rgb(125, 126, 123);
+    cursor: pointer;
+}
+
+.navbar {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5em 0 3em 0;
+    width: 300px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    box-shadow: 0px 5px rgba(2, 0, 96, 0.25);
+    border-right: 1px solid rgb(87, 87, 87);
+    &::-webkit-scrollbar{
+        width: 0px;
+        border-radius: 5px;
+    }
+    &::-webkit-scrollbar-track{
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color: transparent;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav-tab {
+        margin-bottom: 2.5em;
+        position: relative;
+        padding: 0 1.25em 0 2em;
+        width: 100%;
+        &:hover {
+            transition: 300ms all;
+            cursor: pointer;
+
+            .nonsub>img {
+                filter: invert(14%) sepia(59%) saturate(7354%) hue-rotate(258deg) brightness(77%) contrast(92%);
+            }
+
+            .nonsub span {
+                color: #4f27bf;
+            }
+
+        }
+        
+        &.active-tab{
+            border-right: 3px solid #4f27bf;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            display: block;
+        }
+
+
+        .sub-tabs {
+            height: 0px;
+            overflow: hidden;
+            a {
+                padding: 0 0 0 3em;
+                &:hover {
+                    color: #4f27bf;
+                    transition: 300ms all;
+                }
+
+                @media (max-width: 768px) {
+                    padding: 0;
+                }
+            }
+        }
+
+        .sub-open {
+            &,
+            .sub-tabs {
+                display: block;
+                padding: 0px;
+                height: auto;
+                color: #fff;
+                transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+                transition: all 200ms;
+                clear: both;
+                width: 100%;
+                li {
+                    margin-top: 2em;
+                    padding: 0px;
+                    list-style: none;
+                }
+                li:last-child {
+                    border-color: transparent;
+                    padding-bottom: 0px;
+                }
+            }
+            > a {
+                color: #46efa4;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+        }
+
+        & .tab-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1em;
+        }
+    }
+
+    .title-menu {
+        margin-bottom: 2em;
+        padding: 0 1.25em 0 2em;
+    }
+
+    .nav-text {
+        font-size: 1.25em;
+        font-weight: 600;
+    }
+
+    .arrow-down {
+        &::after {
+            content: "";
+            @include arrow-down();
+            position: absolute;
+            right: 20px;
+            top: 12px;
+        }
+    }
+
+    .arrow-up {
+        &::after {
+            content: "";
+            @include arrow-up();
+            position: absolute;
+            right: 20px;
+            top: 12px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        position: relative;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        width: 4em;
+        padding: 0 1em;
+
+        .title-menu {
+            visibility: hidden;
+        }
+    }
+    @media (max-width: 450px) {
+        position: fixed;
+        left: -1000%;
+        top: var(--headerHeight);
+        width: 450px;
+        transition-duration: 0.5s;
+
+        &.expanded {
+            left: 0;
+            top: var(--headerHeight);
+            transition-duration: 0.25s;
+        }
+    }
+}

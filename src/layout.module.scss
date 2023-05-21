@@ -1,0 +1,29 @@
+.main-section {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.right-main-section {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    margin-bottom: 6em;
+    padding: 2em 2em 2em 2em;
+    flex: 1;
+    &::-webkit-scrollbar{
+        width: 6px;
+        
+        border-radius: 5px;
+    }
+    &::-webkit-scrollbar-track{
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color: #4F27BF;
+    }
+    @media screen and (max-width: 768px) {
+        padding: 1em 1em 0 1em;
+    }
+}

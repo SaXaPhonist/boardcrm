@@ -1,0 +1,64 @@
+@import url(./styles/reset.scss);
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('assets/fonts/Montserrat-Light.ttf');
+    font-style: normal;
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('assets/fonts/Montserrat-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+}
+
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('assets/fonts/Montserrat-Medium.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('assets/fonts/Montserrat-SemiBold.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('assets/fonts/Montserrat-Bold.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('assets/fonts/Montserrat-ExtraBold.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 800;
+}
+
+:root {
+    --headerHeight: 80px
+}
+
+body {
+    background-color: #ffffff;
+    font-family: 'Montserrat, sans-serif';
+    font-size: 16px;
+    overflow: hidden;
+}
+
+.app-container {
+    height: 100%;
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 0;
+}

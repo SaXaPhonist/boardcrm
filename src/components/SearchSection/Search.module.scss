@@ -1,0 +1,116 @@
+
+
+.search-description {
+        margin-bottom: 1.5em;
+    }
+
+    .search-title {
+        font-size: 1.625rem;
+        font-weight: 700;
+        margin-bottom: 1em;
+    }
+
+    .search-text {
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+
+    .adress-box {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5em;
+        @media screen and (max-width: 768px) {
+            gap: 0.5em;
+        }
+
+        .search-container {
+            flex: 1;
+
+            .search-term {
+                width: 100%;
+                border: 3px solid #5b7174;
+                padding: 1.5em;
+                height: 70px;
+                border-radius: 10px;
+                outline: none;
+                background-color: #ffffff;
+                color: #6c6c6c;
+
+                &:focus {
+                    color: #000;
+                    border-color: #4f27bf;
+                }
+
+                @media screen and (max-width: 768px) {
+                    padding: 0 0.5em;
+                }
+            }
+        }
+
+        .search-button {
+            display: flex;
+            flex-direction: row;
+            gap: 1em;
+            padding: 19px 40px;
+            background-color: #4f27bf;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #e5e5e5;
+            @media screen and (max-width: 768px) {
+                padding: 1.25em 0.25em;
+            }
+
+            &:hover {
+                background-color: #301676;
+            }
+
+            span {
+                font-size: 1.625rem;
+                font-weight: 700;
+                @media screen and (max-width: 1000px) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .error-box {
+        height: 1em;
+        width: 100%;
+        padding: 0 2em;
+        margin-bottom: 1em;
+        text-align: start;
+        color: red;
+    }
+
+    .results-box {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        padding: 1.5em;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 2px 8px rgba(2, 0, 97, 0.25);
+
+        .result-item {
+            color: #000000;
+            padding: 1em 0;
+            border-top: 1px solid #d7d7d7;
+            font-size: 1.25rem;
+            font-weight: 500;
+
+            &:hover{
+                background-color: #e5e5e5;
+            }
+
+            & a {
+                cursor: pointer;
+                color: #000000;
+                text-decoration: none;
+                &:hover{
+                    color: #e2c740;
+                }
+            }
+        }
+    }
